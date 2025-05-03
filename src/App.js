@@ -21,6 +21,14 @@ const images = [
     title: 'Red Candle',
     size: '984 x 984px',
     created: '5-03-2025',
+  },
+  {
+    url: '/shitman.PNG',
+    artist: 'Vert',
+    trope: 'Art Reference',
+    title: 'Shitman',
+    size: '984 x 984px',
+    created: '5-03-2025',
   }
 ];
 
