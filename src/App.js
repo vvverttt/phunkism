@@ -8,10 +8,10 @@ const ARTIST_SUBTABS = ['Vert'];  // Add more artists here as needed
 // Example image data with varying aspect ratios
 const images = [
   {
-    url: '/homer.PNG',
+    url: '/homer.png',
     artist: 'Arkanaruzain',
     trope: 'Visual Culture',
-    title: '"Homer Simpson Backing Into a Hedge"',
+    title: '"Homer Simpson Backing Into A Hedge"',
     size: '984 x 984px',
     created: '5-03-2025',
   },
