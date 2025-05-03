@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 const TABS = ['Random', 'Chronological', 'Artist', 'Trope', 'Newest'];
 const TROPE_SUBTABS = ['Mash-up', 'Cropping', 'Visual Culture', 'Art Reference'];
-const ARTIST_SUBTABS = ['Vert'];  // Add more artists here as needed
+const ARTIST_SUBTABS = ['Vert', 'Arkanaruzain'];  // Add more artists here as needed
 
 // Example image data with varying aspect ratios
 const images = [
