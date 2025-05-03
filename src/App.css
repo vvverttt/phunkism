@@ -1,0 +1,174 @@
+@font-face {
+  font-family: 'Minecraftia';
+  src: url('./assets/fonts/Minecraftia-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.phunkism-title {
+  font-family: 'Minecraftia', 'Press Start 2P', cursive, sans-serif;
+  color: #e600a8;
+  font-size: 2.5rem;
+  margin-top: 32px;
+  margin-bottom: 24px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.main-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.main-tab {
+  font-family: 'Minecraftia', 'Press Start 2P', cursive, sans-serif;
+  background: none;
+  border: none;
+  color: #e600a8;
+  font-size: 1rem;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+.main-tab.active, .main-tab:hover {
+  background: #e600a8;
+  color: #fff;
+}
+
+.trope-subtabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.trope-subtab {
+  font-family: 'Minecraftia', 'Press Start 2P', cursive, sans-serif;
+  background: none;
+  border: 1px solid #e600a8;
+  color: #e600a8;
+  font-size: 0.95rem;
+  padding: 6px 14px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+.trope-subtab.active, .trope-subtab:hover {
+  background: #e600a8;
+  color: #fff;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 24px;
+  max-width: 900px;
+  margin: 32px auto 0 auto;
+}
+.image-thumb {
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: none;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.image-thumb:hover {
+  border: none;
+  box-shadow: none;
+}
+.image-thumb img {
+  width: 100%;
+  max-width: 160px;
+  margin-bottom: 8px;
+  border: none;
+}
+.image-title {
+  font-family: 'Minecraftia', 'Press Start 2P', cursive, sans-serif;
+  font-size: 1rem;
+  color: #333;
+}
+
+.image-detail {
+  max-width: 420px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  padding: 32px 24px 24px 24px;
+  text-align: center;
+}
+.detail-img {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 8px;
+  margin-bottom: 18px;
+}
+.detail-info {
+  font-family: 'Minecraftia', 'Press Start 2P', cursive, sans-serif;
+  font-size: 1.1rem;
+  color: #222;
+  margin-top: 10px;
+  text-align: left;
+}
+.back-btn {
+  font-family: 'Minecraftia', 'Press Start 2P', cursive, sans-serif;
+  background: none;
+  border: 1px solid #e600a8;
+  color: #e600a8;
+  font-size: 1rem;
+  padding: 6px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 18px;
+  transition: background 0.2s, color 0.2s;
+}
+.back-btn:hover {
+  background: #e600a8;
+  color: #fff;
+}
