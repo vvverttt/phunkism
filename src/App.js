@@ -7,15 +7,21 @@ const TROPE_SUBTABS = ['Mash-up', 'Cropping', 'Visual Culture', 'Art Reference']
 // Example image data with varying aspect ratios
 const images = [
   {
-    url: '/green_candle.jpg',
+    url: '/green_candle.PNG',
     artist: 'Vert',
     trope: 'Art Reference',
     title: 'Green Candle',
     size: '984 x 984px',
-    created: '2024-03-20',
-    collection: 'Phunkism Collection'
+    created: '4-26-2025',
   },
-  // Add more images here with different aspect ratios
+  {
+    url: '/red_candle.PNG',
+    artist: 'Vert',
+    trope: 'Art Reference',
+    title: 'Red Candle',
+    size: '984 x 984px',
+    created: '5-03-2025',
+  }
 ];
 
 function App() {
@@ -116,7 +122,7 @@ function App() {
           <div className="modal-content">
             <button className="modal-close" onClick={() => setSelectedImage(null)}>×</button>
             <div className="modal-grid">
-              <div>
+              <div className="modal-image-container">
                 <img 
                   src={selectedImage.url} 
                   alt={selectedImage.title} 
@@ -125,12 +131,18 @@ function App() {
               </div>
               <div className="modal-info">
                 <h2 className="modal-title">{selectedImage.title}</h2>
-                <p className="modal-artist">{selectedImage.artist}</p>
-                <span className="modal-trope">{selectedImage.trope}</span>
-                <p className="modal-dates">Created: {selectedImage.created}</p>
-                {selectedImage.collection && (
-                  <p className="modal-collection">Collection: {selectedImage.collection}</p>
-                )}
+                <div className="modal-meta-item">
+                  <span className="modal-label">ARTIST</span>
+                  <span className="modal-value">{selectedImage.artist}</span>
+                </div>
+                <div className="modal-meta-item">
+                  <span className="modal-label">TROPE</span>
+                  <span className="modal-value">{selectedImage.trope}</span>
+                </div>
+                <div className="modal-meta-item">
+                  <span className="modal-label">CREATED</span>
+                  <span className="modal-value">{selectedImage.created}</span>
+                </div>
               </div>
             </div>
           </div>

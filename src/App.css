@@ -304,19 +304,46 @@ button, .image-thumb {
   object-fit: contain;
 }
 
-/* Info Section */
+/* Modal Info Section */
 .modal-info {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  justify-content: center;
+  gap: 24px;
   text-align: left;
+  padding: 16px 0;
 }
 
 .modal-title {
-  font-size: 2rem;
-  font-weight: bold;
+  font-size: 24px;
+  font-weight: 700;
   color: #000;
   margin: 0;
+  line-height: 1.2;
+}
+
+.modal-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-label {
+  background: #f5f5f5;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-width: 80px;
+  text-align: center;
+}
+
+.modal-value {
+  font-size: 14px;
+  color: #000;
+  font-weight: 500;
 }
 
 .modal-artist {
