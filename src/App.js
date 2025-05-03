@@ -1,34 +1,65 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const TABS = ['Random', 'Chronological', 'Artist', 'Trope', 'Newest'];
 const TROPE_SUBTABS = ['Mash-up', 'Cropping', 'Visual Culture', 'Art Reference'];
 
-// Example image data
+// Example image data with varying aspect ratios
 const images = [
   {
-    url: '/green_candle.jpg', // Path to your image in the public folder
-    artist: 'Vert',      // Replace with your artist name
-    trope: 'Art Reference',         // Or Cropping, Visual Culture, Art Reference, etc.
+    url: '/green_candle.jpg',
+    artist: 'Vert',
+    trope: 'Art Reference',
     title: 'Green Candle',
-    size: '984 x 984px'
+    size: '984 x 984px',
+    created: '2024-03-20',
+    collection: 'Phunkism Collection'
   },
+  // Add more images here with different aspect ratios
 ];
 
 function App() {
   const [activeTab, setActiveTab] = useState('Random');
   const [activeTrope, setActiveTrope] = useState(TROPE_SUBTABS[0]);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [filteredImages, setFilteredImages] = useState([]);
 
-  // Filter images based on tab
-  let filteredImages = images;
-  if (activeTab === 'Trope') {
-    filteredImages = images.filter(img => img.trope === activeTrope);
-  } else if (activeTab === 'Artist') {
-    // Example: show all for now, could group by artist
-  } else if (activeTab === 'Random') {
-    filteredImages = images.sort(() => 0.5 - Math.random());
-  } // Add more logic for other tabs as needed
+  // Handle modal open/close
+  useEffect(() => {
+    if (selectedImage) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
+  }, [selectedImage]);
+
+  // Randomize images on load and when Random tab is selected
+  useEffect(() => {
+    const randomizeImages = () => {
+      const shuffled = [...images].sort(() => 0.5 - Math.random());
+      setFilteredImages(shuffled);
+    };
+
+    if (activeTab === 'Random') {
+      randomizeImages();
+    } else if (activeTab === 'Trope') {
+      setFilteredImages(images.filter(img => img.trope === activeTrope));
+    } else {
+      setFilteredImages(images);
+    }
+  }, [activeTab, activeTrope]);
+
+  // Handle image loading errors
+  const handleImageError = (e) => {
+    e.target.style.display = 'none';
+  };
+
+  // Close modal when clicking outside
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      setSelectedImage(null);
+    }
+  };
 
   return (
     <div className="App">
@@ -59,24 +90,49 @@ function App() {
           ))}
         </div>
       )}
-      {/* Image Grid or Detail View */}
-      {!selectedImage ? (
-        <div className="image-grid">
-          {filteredImages.map((img, idx) => (
-            <div key={idx} className="image-thumb" onClick={() => setSelectedImage(img)}>
-              <img src={img.url} alt={img.title} />
-              <div className="image-title">{img.title}</div>
+      {/* Image Grid */}
+      <div className="image-grid">
+        {filteredImages.map((img, idx) => (
+          <div 
+            key={idx} 
+            className="image-thumb" 
+            onClick={() => setSelectedImage(img)}
+            onMouseEnter={(e) => e.currentTarget.classList.add('hover')}
+            onMouseLeave={(e) => e.currentTarget.classList.remove('hover')}
+          >
+            <img 
+              src={img.url} 
+              alt={img.title} 
+              onError={handleImageError}
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Modal View */}
+      {selectedImage && (
+        <div className="modal-overlay" onClick={handleOverlayClick}>
+          <div className="modal-content">
+            <button className="modal-close" onClick={() => setSelectedImage(null)}>×</button>
+            <div className="modal-grid">
+              <div>
+                <img 
+                  src={selectedImage.url} 
+                  alt={selectedImage.title} 
+                  className="modal-image"
+                />
+              </div>
+              <div className="modal-info">
+                <h2 className="modal-title">{selectedImage.title}</h2>
+                <p className="modal-artist">{selectedImage.artist}</p>
+                <span className="modal-trope">{selectedImage.trope}</span>
+                <p className="modal-dates">Created: {selectedImage.created}</p>
+                {selectedImage.collection && (
+                  <p className="modal-collection">Collection: {selectedImage.collection}</p>
+                )}
+              </div>
             </div>
-          ))}
-        </div>
-      ) : (
-        <div className="image-detail">
-          <button className="back-btn" onClick={() => setSelectedImage(null)}>&larr; Back</button>
-          <img src={selectedImage.url} alt={selectedImage.title} className="detail-img" />
-          <div className="detail-info">
-            <div><strong>Title:</strong> {selectedImage.title}</div>
-            <div><strong>Artist:</strong> {selectedImage.artist}</div>
-            <div><strong>Trope:</strong> {selectedImage.trope}</div>
           </div>
         </div>
       )}

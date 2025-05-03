@@ -7,6 +7,10 @@
 
 .App {
   text-align: center;
+  min-height: 100vh;
+  background: #fff;
+  color: #000;
+  cursor: crosshair;
 }
 
 .App-logo {
@@ -101,37 +105,112 @@
 
 .image-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 24px;
-  max-width: 900px;
-  margin: 32px auto 0 auto;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 8px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
+
 .image-thumb {
-  background: none;
-  border: none;
-  border-radius: 0;
-  padding: 0;
+  position: relative;
+  width: 100%;
+  margin-bottom: 8px;
+  break-inside: avoid;
   cursor: pointer;
-  transition: none;
-  box-shadow: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  aspect-ratio: auto;
 }
-.image-thumb:hover {
-  border: none;
-  box-shadow: none;
-}
+
 .image-thumb img {
   width: 100%;
-  max-width: 160px;
-  margin-bottom: 8px;
-  border: none;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
+
+.image-thumb:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.image-thumb.hover img {
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .image-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .image-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+    padding: 4px;
+  }
+  
+  .phunkism-title {
+    font-size: 2rem;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .main-tabs {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .main-tab {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .image-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .trope-subtabs {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .trope-subtab {
+    font-size: 0.8rem;
+    padding: 4px 10px;
+  }
+}
+
+/* Ensure images maintain their aspect ratio */
+.image-thumb img {
+  aspect-ratio: auto;
+  height: auto;
+  max-height: 80vh;
+}
+
+/* Optimize for touch devices */
+@media (hover: none) {
+  .image-thumb:hover {
+    transform: none;
+  }
+  
+  .image-thumb.hover img {
+    transform: none;
+  }
+}
+
 .image-title {
   font-family: 'Minecraftia', 'Press Start 2P', cursive, sans-serif;
   font-size: 1rem;
-  color: #333;
+  color: #000;
 }
 
 .image-detail {
@@ -152,7 +231,7 @@
 .detail-info {
   font-family: 'Minecraftia', 'Press Start 2P', cursive, sans-serif;
   font-size: 1.1rem;
-  color: #222;
+  color: #000;
   margin-top: 10px;
   text-align: left;
 }
@@ -171,4 +250,149 @@
 .back-btn:hover {
   background: #e600a8;
   color: #fff;
+}
+
+/* Custom cursor for interactive elements */
+button, .image-thumb {
+  cursor: pointer;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Modal Container */
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 1200px;
+  min-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  animation: scaleIn 0.3s ease;
+}
+
+/* Modal Layout */
+.modal-grid {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  gap: 24px;
+  padding: 32px;
+}
+
+/* Image Section */
+.modal-image {
+  width: 100%;
+  max-width: 512px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+/* Info Section */
+.modal-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.modal-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #000;
+  margin: 0;
+}
+
+.modal-artist {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  color: #666;
+  margin: 0;
+}
+
+.modal-trope {
+  display: inline-block;
+  background: #f0f0f0;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.modal-dates {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.modal-collection {
+  color: #333;
+  font-size: 1rem;
+}
+
+/* Close Button */
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #666;
+  cursor: pointer;
+  padding: 8px;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.modal-close:hover {
+  color: #000;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.95); }
+  to { transform: scale(1); }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .modal-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .modal-content {
+    min-width: auto;
+    width: 95%;
+  }
+  
+  .modal-image {
+    max-width: 100%;
+  }
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+  overflow: hidden;
 }
