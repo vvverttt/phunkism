@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 const TABS = ['Random', 'Chronological', 'Artist', 'Trope', 'Newest'];
 const TROPE_SUBTABS = ['Mash-up', 'Cropping', 'Visual Culture', 'Art Reference'];
+const ARTIST_SUBTABS = ['Vert'];  // Add more artists here as needed
 
 // Example image data with varying aspect ratios
 const images = [
@@ -35,6 +36,7 @@ const images = [
 function App() {
   const [activeTab, setActiveTab] = useState('Random');
   const [activeTrope, setActiveTrope] = useState(TROPE_SUBTABS[0]);
+  const [activeArtist, setActiveArtist] = useState(ARTIST_SUBTABS[0]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [filteredImages, setFilteredImages] = useState([]);
 
@@ -47,7 +49,7 @@ function App() {
     }
   }, [selectedImage]);
 
-  // Randomize images on load and when Random tab is selected
+  // Filter images based on active tab and sub-tab
   useEffect(() => {
     const randomizeImages = () => {
       const shuffled = [...images].sort(() => 0.5 - Math.random());
@@ -58,10 +60,12 @@ function App() {
       randomizeImages();
     } else if (activeTab === 'Trope') {
       setFilteredImages(images.filter(img => img.trope === activeTrope));
+    } else if (activeTab === 'Artist') {
+      setFilteredImages(images.filter(img => img.artist === activeArtist));
     } else {
       setFilteredImages(images);
     }
-  }, [activeTab, activeTrope]);
+  }, [activeTab, activeTrope, activeArtist]);
 
   // Handle image loading errors
   const handleImageError = (e) => {
@@ -100,6 +104,20 @@ function App() {
               onClick={() => { setActiveTrope(subtab); setSelectedImage(null); }}
             >
               {subtab}
+            </button>
+          ))}
+        </div>
+      )}
+      {/* Artist Sub-Tabs */}
+      {activeTab === 'Artist' && (
+        <div className="trope-subtabs">
+          {ARTIST_SUBTABS.map(artist => (
+            <button
+              key={artist}
+              className={`trope-subtab${activeArtist === artist ? ' active' : ''}`}
+              onClick={() => { setActiveArtist(artist); setSelectedImage(null); }}
+            >
+              {artist}
             </button>
           ))}
         </div>
