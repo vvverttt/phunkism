@@ -8,10 +8,18 @@ const ARTIST_SUBTABS = ['Vert'];  // Add more artists here as needed
 // Example image data with varying aspect ratios
 const images = [
   {
+    url: '/homer.PNG',
+    artist: 'Arkanaruzain',
+    trope: 'Visual Culture',
+    title: '"Homer Simpson Backing Into a Hedge"',
+    size: '984 x 984px',
+    created: '5-03-2025',
+  },
+  {
     url: '/green_candle.PNG',
     artist: 'Vert',
     trope: 'Art Reference',
-    title: 'Green Candle',
+    title: '"Green Candle"',
     size: '984 x 984px',
     created: '4-26-2025',
   },
@@ -19,7 +27,7 @@ const images = [
     url: '/red_candle.PNG',
     artist: 'Vert',
     trope: 'Art Reference',
-    title: 'Red Candle',
+    title: '"Red Candle"',
     size: '984 x 984px',
     created: '5-03-2025',
   },
@@ -27,7 +35,7 @@ const images = [
     url: '/shitman.PNG',
     artist: 'Vert',
     trope: 'Art Reference',
-    title: 'Shitman',
+    title: '"Shitman"',
     size: '984 x 984px',
     created: '5-03-2025',
   }
