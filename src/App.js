@@ -13,7 +13,7 @@ const images = [
     trope: 'Visual Culture',
     title: '"Jedi Phunk"',
     size: '984 x 984px',
-    created: '5-03-2025',
+    created: '5-04-2025',
   },
   {
     url: '/homer.png',
