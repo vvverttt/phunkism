@@ -8,6 +8,14 @@ const ARTIST_SUBTABS = ['Vert', 'Arkanaruzain'];  // Add more artists here as ne
 // Example image data with varying aspect ratios
 const images = [
   {
+    url: '/spider-turtle.PNG',
+    artist: 'Vert',
+    trope: 'Visual Culture',
+    title: '"Spider-Turtle"',
+    size: '984 x 984px',
+    created: '5-07-2025',
+  },
+  {
     url: '/jedi_phunk.png',
     artist: 'Vert',
     trope: 'Visual Culture',
